@@ -44,18 +44,6 @@ const iconSocials = [
   },
 ];
 
-// Text links — no standard icon
-const textSocials = [
-  { label: 'KiviHealth', href: socials.kivihealth },
-  { label: 'EyeWiki', href: socials.eyewiki },
-];
-
-const Arrow = () => (
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M7 17 17 7M8 7h9v9" />
-  </svg>
-);
-
 export default function Footer() {
   return (
     <footer className="force-dark relative overflow-hidden border-t border-white/10 bg-ink pt-20">
@@ -70,9 +58,10 @@ export default function Footer() {
               </span>
               <span className="font-display text-xl text-white">{clinic.name}</span>
             </div>
-            <p className="mt-5 max-w-xs text-sm text-white/65">
-              Advanced retina care in {clinic.city}. {doctor.name}, {doctor.role} —
-              protecting and restoring vision with precision and compassion.
+            <p className="mt-6 font-display text-lg text-white">{doctor.name}</p>
+            <p className="mt-1.5 max-w-xs text-sm text-white/65">
+              {doctor.role} · Advanced retina care in {clinic.city} — protecting and
+              restoring vision with precision and compassion.
             </p>
             <p className="mt-6 text-sm text-white/55">{clinic.addressLine}</p>
             <p className="text-sm text-white/55">{clinic.hours}</p>
@@ -110,23 +99,6 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-
-            {/* Text links */}
-            <ul className="mt-6 space-y-3">
-              {textSocials.map((s) => (
-                <li key={s.label}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-white/75 transition hover:text-retina-cyan"
-                  >
-                    {s.label}
-                    <Arrow />
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
