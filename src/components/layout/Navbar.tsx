@@ -67,7 +67,7 @@ export default function Navbar() {
               <span className={`block font-display text-[1.05rem] font-medium tracking-tight transition-colors ${brandText}`}>
                 {clinic.shortName}
               </span>
-              <span className="block text-[0.6rem] uppercase tracking-[0.3em] text-accent/70">
+              <span className={`block text-[0.6rem] uppercase tracking-[0.3em] transition-colors ${onHero ? 'text-retina-cyan/90' : 'text-accent/90'}`}>
                 Clinic
               </span>
             </span>

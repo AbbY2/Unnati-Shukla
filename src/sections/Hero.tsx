@@ -32,7 +32,7 @@ export default function Hero() {
 
       {/* Headline block */}
       <div className="container-p relative z-10 mt-10 flex flex-col items-center text-center">
-        <h1 className="max-w-6xl font-display text-[2.8rem] font-light leading-[0.98] tracking-tightest text-white sm:text-6xl md:text-7xl lg:text-[5.8rem]">
+        <h1 className="max-w-6xl font-display text-[2.8rem] font-light leading-[0.98] tracking-tightest text-white [text-shadow:0_2px_30px_rgba(4,16,31,0.45)] sm:text-6xl md:text-7xl lg:text-[5.8rem]">
           <motion.span custom={0} variants={line} initial="hidden" animate="show" className="block">
             Every Vision Has A Story.
           </motion.span>
@@ -46,7 +46,7 @@ export default function Hero() {
           variants={line}
           initial="hidden"
           animate="show"
-          className="mt-7 max-w-xl text-balance text-base text-white/60 md:text-lg"
+          className="mt-7 max-w-xl text-balance text-base text-white/85 [text-shadow:0_1px_16px_rgba(4,16,31,0.55)] md:text-lg"
         >
           Advanced Retina Care · Expert Vitreoretinal Surgery · Personalised Treatment
         </motion.p>

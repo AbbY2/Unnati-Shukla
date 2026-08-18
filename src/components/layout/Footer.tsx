@@ -10,13 +10,51 @@ const nav = [
   { label: 'Book', href: '#book' },
 ];
 
-const social = [
-  { label: 'Instagram', href: socials.instagram },
-  { label: 'Facebook', href: socials.facebook },
+// Icon links — recognisable brand marks
+const iconSocials = [
+  {
+    label: 'Instagram',
+    href: socials.instagram,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+        <circle cx="12" cy="12" r="3.8" />
+        <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Facebook',
+    href: socials.facebook,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.5 21v-7.03h2.36l.35-2.74H13.5V9.48c0-.79.22-1.33 1.36-1.33h1.45V5.7c-.25-.03-1.11-.1-2.11-.1-2.1 0-3.53 1.28-3.53 3.63v2.03H8.25v2.74h2.36V21z" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Google Maps',
+    href: socials.maps,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 21s-6.5-4.2-6.5-9.5a6.5 6.5 0 1113 0C18.5 16.8 12 21 12 21z" />
+        <circle cx="12" cy="11.2" r="2.3" />
+      </svg>
+    ),
+  },
+];
+
+// Text links — no standard icon
+const textSocials = [
   { label: 'KiviHealth', href: socials.kivihealth },
   { label: 'EyeWiki', href: socials.eyewiki },
-  { label: 'Google Maps', href: socials.maps },
 ];
+
+const Arrow = () => (
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 17 17 7M8 7h9v9" />
+  </svg>
+);
 
 export default function Footer() {
   return (
@@ -32,20 +70,20 @@ export default function Footer() {
               </span>
               <span className="font-display text-xl text-white">{clinic.name}</span>
             </div>
-            <p className="mt-5 max-w-xs text-sm text-white/50">
+            <p className="mt-5 max-w-xs text-sm text-white/65">
               Advanced retina care in {clinic.city}. {doctor.name}, {doctor.role} —
               protecting and restoring vision with precision and compassion.
             </p>
-            <p className="mt-6 text-sm text-white/40">{clinic.addressLine}</p>
-            <p className="text-sm text-white/40">{clinic.hours}</p>
+            <p className="mt-6 text-sm text-white/55">{clinic.addressLine}</p>
+            <p className="text-sm text-white/55">{clinic.hours}</p>
           </div>
 
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-white/40">Explore</h4>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-white/55">Explore</h4>
             <ul className="mt-5 space-y-3">
               {nav.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="text-sm text-white/70 transition hover:text-accent">
+                  <a href={n.href} className="text-sm text-white/75 transition hover:text-retina-cyan">
                     {n.label}
                   </a>
                 </li>
@@ -54,17 +92,37 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-white/40">Connect</h4>
-            <ul className="mt-5 space-y-3">
-              {social.map((s) => (
+            <h4 className="text-xs uppercase tracking-[0.2em] text-white/55">Connect</h4>
+
+            {/* Icon links */}
+            <div className="mt-5 flex gap-3">
+              {iconSocials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  data-cursor="hover"
+                  className="flex h-11 w-11 items-center justify-center rounded-full glass text-white/85 transition duration-300 ease-out-strong hover:-translate-y-0.5 hover:text-retina-cyan"
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+
+            {/* Text links */}
+            <ul className="mt-6 space-y-3">
+              {textSocials.map((s) => (
                 <li key={s.label}>
                   <a
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-white/70 transition hover:text-accent"
+                    className="inline-flex items-center gap-1.5 text-sm text-white/75 transition hover:text-retina-cyan"
                   >
-                    {s.label} ↗
+                    {s.label}
+                    <Arrow />
                   </a>
                 </li>
               ))}
@@ -72,11 +130,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-8 text-xs text-white/35 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-8 text-xs text-white/55 sm:flex-row">
           <p>© {new Date().getFullYear()} {clinic.name}. All rights reserved.</p>
-          <p>
-            Medical information is educational and not a substitute for professional advice.
-          </p>
+          <p>Medical information is educational and not a substitute for professional advice.</p>
         </div>
       </div>
     </footer>
