@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+build
+.DS_Store
+*.pem
+npm-debug.log*
+.env*.local
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Dev agent tooling (not part of the app)
+.agents/
+.claude/skills/
+skills-lock.json

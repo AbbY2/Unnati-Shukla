@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────────
+   Theme tokens — dark is the default (:root/.dark),
+   .light overrides. Flipped by next-themes (class).
+   RGB triplets so Tailwind alpha (text-fg/60) works.
+──────────────────────────────────────────────── */
+:root,
+.dark,
+.force-dark {
+  color-scheme: dark;
+  --font-display: var(--font-sans);
+
+  --fg: 234 243 251; /* near-white text */
+  --page: 10 18 32; /* #0A1220 base bg */
+  --alt: 4 16 31; /* #04101F alternate bg */
+
+  --glass-grad: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 40px -14px rgba(0, 0, 0, 0.55);
+
+  --glass-strong-grad: linear-gradient(135deg, rgba(14, 77, 146, 0.28), rgba(7, 26, 51, 0.5));
+  --glass-strong-border: rgba(92, 200, 255, 0.18);
+  --glass-strong-shadow: 0 10px 50px -18px rgba(0, 0, 0, 0.6);
+
+  --text-grad: linear-gradient(110deg, #ffffff 0%, #9fe4ff 40%, #7a5cff 100%);
+  --text-grad-cyan: linear-gradient(110deg, #38e1ff, #7a5cff);
+
+  --eyebrow: rgba(56, 225, 255, 0.85);
+  --hairline: rgba(255, 255, 255, 0.15);
+  --ring: #38e1ff;
+
+  /* Theme-aware accent text: bright on dark, deep on light */
+  --accent: 56 225 255; /* retina cyan */
+  --accent-emerald: 37 224 164;
+
+  --btn-ghost-border: rgba(255, 255, 255, 0.15);
+  --btn-ghost-bg: rgba(255, 255, 255, 0.03);
+}
+
+.light {
+  color-scheme: light;
+
+  --fg: 13 27 46; /* #0D1B2E deep slate — 4.5:1+ on white */
+  --page: 255 255 255; /* clean white */
+  --alt: 240 245 251; /* #F0F5FB very light blue-gray */
+
+  --glass-grad: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.55));
+  --glass-border: rgba(14, 77, 146, 0.14);
+  --glass-shadow: 0 16px 44px -22px rgba(14, 77, 146, 0.28);
+
+  --glass-strong-grad: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(233, 242, 251, 0.78));
+  --glass-strong-border: rgba(14, 77, 146, 0.16);
+  --glass-strong-shadow: 0 20px 50px -24px rgba(14, 77, 146, 0.3);
+
+  --text-grad: linear-gradient(110deg, #0e4d92 0%, #1493b8 45%, #7a5cff 100%);
+  --text-grad-cyan: linear-gradient(110deg, #0e7fa8, #6e4df0);
+
+  --eyebrow: #0a6a8e;
+  --hairline: rgba(14, 77, 146, 0.18);
+  --ring: #0e4d92;
+
+  /* Deeper accents for strong contrast on white (headline emphasis + links) */
+  --accent: 8 92 122; /* deep teal — ~6:1 on white */
+  --accent-emerald: 11 102 72; /* deep green */
+
+  --btn-ghost-border: rgba(14, 77, 146, 0.22);
+  --btn-ghost-bg: rgba(14, 77, 146, 0.04);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  background-color: rgb(var(--page));
+}
+
+body {
+  background-color: rgb(var(--page));
+  color: rgb(var(--fg));
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: rgba(56, 225, 255, 0.28);
+  color: #04101f;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--alt));
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#0e4d92, #38e1ff);
+  border-radius: 20px;
+}
+
+/* Visible keyboard focus (a11y) */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@layer components {
+  .container-p {
+    @apply mx-auto w-full max-w-[1400px] px-6 md:px-10 lg:px-16;
+  }
+
+  .glass {
+    /* Elevation declared once: hairline border at rest, shadow only on hover
+       (avoids the "ghost card" — a 1px border under a wide soft shadow). */
+    background: var(--glass-grad);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .glass-strong {
+    background: var(--glass-strong-grad);
+    border: 1px solid var(--glass-strong-border);
+    box-shadow: var(--glass-strong-shadow);
+    backdrop-filter: blur(26px) saturate(150%);
+    -webkit-backdrop-filter: blur(26px) saturate(150%);
+  }
+
+  /* Headline emphasis: carried by weight + a single themed accent (no gradient
+     text). Emphasis comes from the weight step over the light heading base. */
+  .text-gradient,
+  .text-gradient-cyan {
+    color: rgb(var(--accent));
+    font-weight: 500;
+  }
+
+  .hairline {
+    @apply h-px w-full;
+    background: linear-gradient(to right, transparent, var(--hairline), transparent);
+  }
+
+  .btn-magnetic {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-7 py-3.5 text-sm font-medium transition-transform duration-300 will-change-transform;
+  }
+
+  .btn-primary {
+    @apply btn-magnetic text-white;
+    background: linear-gradient(110deg, #0e4d92, #38e1ff);
+    box-shadow: 0 10px 40px -12px rgba(56, 225, 255, 0.6);
+  }
+
+  .btn-ghost {
+    @apply btn-magnetic;
+    color: rgb(var(--fg) / 0.9);
+    border: 1px solid var(--btn-ghost-border);
+    background: var(--btn-ghost-bg);
+  }
+}
+
+@layer utilities {
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+  .perspective {
+    perspective: 1200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
