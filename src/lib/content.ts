@@ -175,11 +175,10 @@ export const technology = [
 ];
 
 export const stats = [
-  { value: 12, suffix: '+', label: 'Years of Experience' },
+  { value: 10, suffix: '', label: 'Years of Experience' },
   { value: 15000, suffix: '+', label: 'Patients Treated' },
   { value: 4000, suffix: '+', label: 'Retina Surgeries' },
   { value: 6, suffix: '+', label: 'Advanced Diagnostic Systems' },
-  { value: 98, suffix: '%', label: 'Patient Satisfaction' },
 ];
 
 export const journeySteps = [

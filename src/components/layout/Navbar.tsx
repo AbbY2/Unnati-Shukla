@@ -63,13 +63,8 @@ export default function Navbar() {
               <span className="absolute inset-[3px] rounded-full bg-medical-deepnavy" />
               <span className="relative h-2 w-2 rounded-full bg-retina-cyan shadow-[0_0_10px_rgba(56,225,255,0.9)]" />
             </span>
-            <span className="text-left leading-none">
-              <span className={`block font-display text-[1.05rem] font-medium tracking-tight transition-colors ${brandText}`}>
-                {clinic.shortName}
-              </span>
-              <span className={`block text-[0.6rem] uppercase tracking-[0.3em] transition-colors ${onHero ? 'text-retina-cyan/90' : 'text-accent/90'}`}>
-                Clinic
-              </span>
+            <span className={`font-display text-[1.05rem] font-medium tracking-tight transition-colors ${brandText}`}>
+              {clinic.name}
             </span>
           </button>
 

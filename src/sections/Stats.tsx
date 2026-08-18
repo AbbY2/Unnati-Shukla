@@ -38,7 +38,7 @@ export default function Stats() {
     <section className="relative overflow-hidden bg-alt py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,225,255,0.14),transparent_55%)]" />
       <div className="container-p relative">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="text-center">
               <div className="font-display text-4xl font-light text-gradient-cyan md:text-6xl">
